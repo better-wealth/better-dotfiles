@@ -1,0 +1,551 @@
+https://newsblocks.io/data-extraction-pipeline/
+Help us build it!
+Do you want to help build this out? If so, send your CV to jobs@newsblocks.io, 
+detailing what you are interested in, and the tools and techniques that you would use.
+
+
+Decentralised News Network 
+@OurDNN
+
+https://civil.co/
+
+
+Media Sifter
+@media_sifter
+http://www.mediasifter.co/
+
+https://trive.news/Whitepaper.0.2.6x.pdf
+To enforce system behavior and to prevent users from ͞ gaming͟ the process, we ensure
+that all participants are pseudonymous, that witnesses are assigned randomly, and that
+no one can participate in the same game in more than one role.
+Triǀe™ has 5 types of ͞ players͟ . Each ͞ player͟ is pseudonanymous wallet with an
+attached reputation score, no personally identifying information (pii) is ever collected.
+Anonymity must be sacrosanct if we are to preserve the santicity of the Trive™ process.
+ Consumers who consume the news and send stories of interest to the
+marketplace for Curators to find and research;
+ Curators who bid on stories and publish lists of article claims with an incentive
+to maximize profit, reduce research costs and deliver quality;
+ Researchers who are incentivized to find and document convincing true data
+quickly and efficiently, lest their time be spent for nothing and their reward
+taken by someone better;
+ Verifiers who verify the supporting evidence collected by the Researchers
+above, and are rewarded if/when the Researcher͛ s err;
+ Witnesses who review research and participate in the truth scoring process,
+earning a small fee and enjoying the truth discovery process.
+Each of these roles have a set of incentives that maximizes the search for the truth and
+minimizes gaming.
+
+https://www.nahmii.io/
+
+https://steemit.com/
+Steemit is a blockchain-based social media Dapp (decentralized application) 
+that creates communities where users are rewarded for sharing their voice. 
+It's a new kind of attention economy.
+
+https://pivx.org
+Experience the freedom of global digital cash with SHIELD User Data Protection. 
+Be your own bank with full control of your digital assets.
+
+https://navcoin.org/
+We’re in the midst of a paradigm shift with nations relying more 
+and more on cashless options to make payments. 
+Current events have accelerated this paradigm, 
+and concerns surrounding social and financial exclusion, 
+profiling and automated decision making are on the rise. 
+As a response to this, our mission is to provide people with the 
+tools they need to protect their financial privacy, 
+and to do so free of charge.
+
+https://aragon.org/
+Build your Decentralized Autonomous Organization on open-source infrastructure with governance plugins.
+
+https://www.golem.network/
+The Golem Network fosters a global group of creators building ambitious software solutions 
+that will shape the technological landscape of future generations 
+by accessing computing resources across the platform.
+
+https://iex.ec/
+Decentralized marketplace for computing assets.
+
+https://ideamarket.io/
+Make lying expensive.
+Ideamarket values the world's information,
+creating public narratives without third parties.
+https://docs.ideamarket.io/
+The Blockchain of Opinions (BoO)
+The blockchain of opinions creates decentralized common knowledge by surfacing 
+"the most confident opinions, of the most trusted users." 
+It's an experiment, so its current form is non-marketized — 
+there are no capital gains or losses.
+
+https://hypeclub.xyz/
+A Web3 community that pays you to get pitched by up-and-coming NFT, DeFi, and DAO projects.
+
+https://blockzerolabs.io/
+Earn crypto for helping build, launch, and scale startups.
+
+
+
+Anything with an extension of .zsh will get automatically included in your shell. Anything with an extension of .symlink will get symlinked without extension into $HOME when you run installers/bootstrap.
+
+There are a few special files in the hierarchy:
+
+    bin/: Anything in bin/ will get added to your $PATH and be made available everywhere.
+    topic/*.zsh: Any files ending in .zsh get loaded into your environment.
+    topic/path.zsh: Any file named path.zsh is loaded first and is expected to set up $PATH or similar.
+    topic/completion.zsh: Any file named completion.zsh is loaded last and is expected to set up autocomplete.
+    topic/install.sh: Any file named install.sh is executed when you run installers/install. To avoid being loaded automatically, its extension is .sh, not .zsh.
+    topic/*.symlink: Any file ending in *.symlink gets symlinked into your $HOME. This is so you can keep all of those versions in your dotfiles but still keep those autoloaded files in your home directory. These get symlinked in when you run installers/bootstrap.
+
+
+
+# Load: Configurations
+source $HOME/dotfiles/zsh/config
+
+# Load: Plugins
+source $HOME/dotfiles/zsh/plugins
+
+# Load: OH-MY-ZSH
+source $ZSH/oh-my-zsh.sh
+
+# Load: POWERLINE
+source $HOME/dotfiles/zsh/powerlevel9k
+
+# Load: ALIASES
+source $HOME/dotfiles/zsh/aliases
+
+
+
+.gitconfig:
+[user]
+	name = jogendra
+	email = jogendrafx@gmail.com
+
+[mergetool]
+	keepBackup = false
+
+[alias]
+	parent = rev-parse --abbrev-ref --symbolic-full-name @{u}
+	last = log -1 HEAD
+	unstage = reset HEAD --
+	pr = !sh ~/dotfiles/git/pull_request.sh
+	remotes = remote -v
+	syncu = !sh ~/dotfiles/git/sync_with_upstream.sh
+	diffall = !sh ~/dotfiles/git/git_unpushed.sh
+	plog = !sh ~/dotfiles/git/plog.sh
+	lazy = !lazygit
+	contributors = shortlog --summary --numbered
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+
+[commit]
+	gpgsign = false
+
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+	
+[credential]
+	helper = osxkeychain
+
+
+brew:
+
+#!/usr/bin/env bash
+
+# Abort on error
+set -e
+
+echo "Checking if Homebrew is already installed..."; 
+
+# Checks if Homebrew is installed
+if test ! $(which brew); then
+  echo "Installing Homebrew...";
+  yes | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+else
+  echo "Homebrew is already installed...";
+fi
+
+# Install the essential brews
+brew install carthage
+brew install cocoapods
+brew install gettext
+brew install gh
+brew install git
+brew install node
+brew install lazygit
+brew install lsd
+brew install tree
+brew install yarn
+brew install zsh
+brew install zsh-completions
+brew install neovim
+brew install pass
+brew install vim
+
+# Install essential casks
+brew cask install iterm2
+brew cask install charles
+brew cask install firefox
+
+# Update and Upgrade
+echo "Updating and upgrading Homebrew..."; echo;
+yes | brew update
+yes | brew upgrade
+
+# Remove outdated versions from the cellar
+brew cleanup
+
+
+AppleScripts:
+
+property examplePath1 : "~/Projects/pathto/directory1"
+property examplePath2 : "~/Projects/pathto/directory2"
+property examplePath3 : "~/Projects/pathto/directory3"
+property pathList : {examplePath1, examplePath2, examplePath3}
+ 
+on run_iterm()
+   tell application "iTerm"
+       set newWindow to current window
+       -- if you want to open repositories in new window
+       -- uncomment the line below and comment linne above
+       -- set newWindow to (create window with default profile)
+       tell current session of newWindow
+           repeat with path in pathList
+               tell newWindow
+                   create tab with default profile
+               end tell
+               write text "cd " & path
+           end repeat
+           delay 0.6
+           select first tab of newWindow
+       end tell
+   end tell
+end run_iterm
+ 
+if application "iTerm" is running then
+   run_iterm()
+else
+   activate application "iTerm"
+   run_iterm()
+end if
+
+
+
+I simply use it with a shell alias:
+
+alias workinit="osascript ~/dotfiles/AppleScripts/work_init.scpt"
+
+
+macOS:
+
+# Free the Dock
+defaults write com.apple.Dock size-immutable -bool no; killall Dock
+
+# Remove the auto-hiding Dock delay
+defaults write com.apple.Dock autohide-delay -float 0
+
+# Remove the animation when hiding/showing the Dock
+defaults write com.apple.Dock autohide-time-modifier -float 0
+
+# Set the icon size of Dock items
+defaults write com.apple.Dock tilesize -int 28
+
+# Disable press-and-hold for keys in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+To apply the macOS defaults, you can simply run:
+
+Source ~/.dotfiles/macos/settings
+
+
+
+
+Install the dotfiles:
+
+env RCRC=$HOME/dotfiles/rcrc rcup
+
+
+Install
+
+Download the script:
+
+curl --remote-name https://raw.githubusercontent.com/thoughtbot/laptop/main/mac
+
+Review the script (avoid running scripts you haven't read!):
+
+less mac
+
+Execute the downloaded script:
+
+sh mac 2>&1 | tee ~/laptop.log
+
+Optionally, review the log:
+
+less ~/laptop.log
+
+
+
+.github
+bin
+config
+install
+macos
+runcom
+system
+test
+.editorconfig
+.gitignore
+Makefile
+README.md
+remote-install.sh
+
+
+
+
+
+
+#! /usr/bin/env sh
+
+DIR=$(dirname "$0")
+cd "$DIR"
+
+COMMENT=\#*
+
+sudo -v
+
+# Install Brewfile contents
+brew bundle
+
+find * -name "*.list" | while read fn; do
+    cmd="${fn%.*}"
+    while read package; do
+        if [[ $package == $COMMENT ]];
+        then continue
+        fi
+        if [[ $cmd == code* ]]; then
+            echo "$cmd $package"
+            $cmd $package
+        else
+            echo "$cmd install $package"
+            $cmd install $package
+        fi
+    done < "$fn"
+done
+
+
+
+
+#! /usr/bin/env sh
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `setup.sh` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+DIR=$(dirname "$0")
+cd "$DIR"
+
+xcode-select --install
+
+# Package control must be executed first in order for the rest to work
+echo "./packages/setup.sh"
+./packages/setup.sh
+
+find * -name "setup.sh" -not -wholename "packages*" | while read setup; do
+    echo "./$setup"
+    ./$setup
+done
+
+
+
+####
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install git
+git clone git@github.com:rkalis/dotfiles.git
+cd dotfiles
+./bootstrap.sh
+
+
+
+
+
+
+################
+
+
+#! /usr/bin/env sh
+
+DIR=$(dirname "$0")
+cd "$DIR"
+
+COMMENT=\#*
+REPO_PATH=$(realpath ~/repos)
+
+find * -name "*.list" | while read fn; do
+    folder="${fn%.*}"
+    mkdir -p "$REPO_PATH/$folder"
+    while read repo; do
+        if [[ $repo == $COMMENT ]];
+        then continue; else
+            pushd "$REPO_PATH/$folder"
+            git clone $repo
+            popd
+        fi
+    done < "$fn"
+done
+
+
+
+
+###################
+
+
+With your repositories added to your dotfiles, and installed in a common location, with a common structure (~/repos/$category_folder/$repository_folder), it is already a lot easier to navigate to them. But manually navigating can still get tedious if you tend to switch repos often. This is where the repo shell function comes in.
+
+function repo
+    set -l repo_base ~/repos
+    set -l repo_path (find "$repo_base" -mindepth 2 -maxdepth 2 -type d -name "*$argv*" | head -n 1)
+    if not test "$argv"; or not test "$repo_path"
+        cd "$repo_base"
+    else
+        echo "found $repo_path"
+        cd "$repo_path"
+    end
+end
+
+To complete the navigational experience, the function needs some custom shell completions, of course. Luckily, Fish makes creating custom completions as easy as adding a repo.fish file inside the completions/ folder.
+
+for repo in (find ~/repos -mindepth 2 -maxdepth 2 -type d)
+    complete -f -c repo -a (basename "$repo")
+end
+
+This loops through all existing repository folders, and adds them to the completions for the repo function using the built-in complete command. Entering repo d could then result in these completions.
+
+
+Completions Example
+3. Bulk repository actions
+
+We have seen that organising your repositories in the ways above can make it very easy to navigate between repos, but there are more advantages to such a setup. Since we know where all repositories reside, we can easily loop through them all, and perform bulk actions on them.
+
+function forrepos --description 'Evaluates $argv for all repo folders'
+    for d in (find ~/repos -mindepth 2 -maxdepth 2 ! -path . -type d)
+        pushd $d
+        set repo (basename $d)
+        echo $repo
+        eval (abbrex $argv)
+        popd > /dev/null
+    end
+end
+
+
+
+
+###############################
+
+git init --bare $HOME/.cfg
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+config config --local status.showUntrackedFiles no
+echo "alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
+
+
+
+
+After you've executed the setup any file within the $HOME folder can be versioned with normal commands, replacing git with your newly created config alias, like:
+
+config status
+config add .vimrc
+config commit -m "Add vimrc"
+config add .bashrc
+config commit -m "Add bashrc"
+config push
+
+
+
+
+
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+    And that your source repository ignores the folder where you'll clone it, so that you don't create weird recursion problems:
+
+echo ".cfg" >> .gitignore
+
+    Now clone your dotfiles into a bare repository in a "dot" folder of your $HOME:
+
+git clone --bare <git-repo-url> $HOME/.cfg
+
+    Define the alias in the current shell scope:
+
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+    Checkout the actual content from the bare repository to your $HOME:
+
+config checkout
+
+This is because your $HOME folder might already have some stock configuration files which would be overwritten by Git. The solution is simple: back up the files if you care about them, remove them if you don't care. I provide you with a possible rough shortcut to move all the offending files automatically to a backup folder:
+
+mkdir -p .config-backup && \
+config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+xargs -I{} mv {} .config-backup/{}
+
+    Re-run the check out if you had problems:
+
+config checkout
+
+    Set the flag showUntrackedFiles to no on this specific (local) repository:
+
+config config --local status.showUntrackedFiles no
+
+    You're done, from now on you can now type config commands to add and update your dotfiles:
+
+config status
+config add .vimrc
+config commit -m "Add vimrc"
+config add .bashrc
+config commit -m "Add bashrc"
+config push
+
+
+
+
+git clone --bare https://bitbucket.org/durdn/cfg.git $HOME/.cfg
+function config {
+   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
+}
+mkdir -p .config-backup
+config checkout
+if [ $? = 0 ]; then
+  echo "Checked out config.";
+  else
+    echo "Backing up pre-existing dot files.";
+    config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+fi;
+config checkout
+config config status.showUntrackedFiles no
+
+
+
+
+###################
+# Update App Store apps
+sudo softwareupdate -i -a
+
+# Update Homebrew (Cask) & packages
+brew update
+brew upgrade
+
+# Update npm & packages
+npm install npm -g
+npm update -g
+
+# Update Ruby & gems
+sudo gem update -system
+sudo gem update
+
+
+
