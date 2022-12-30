@@ -1,7 +1,12 @@
 #! /usr/bin/env bash
 
-# DESCRIPTION
-# Executes the command line interface.
+################################################################################
+# better-code/bin/better_dotfiles
+# Executes the command line interface for setting up better dotfiles on MacOS.
+# https://github.com/better-wealth/better-dotfiles
+# MIT License
+# 2022 (C) John Patrick Roach
+################################################################################
 
 # SETTINGS
 set -o errexit
@@ -11,10 +16,19 @@ set -o pipefail
 source lib/utilities.sh
 source lib/options.sh
 
+################################################################################
+# logo
+################################################################################
+logo=" +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ |b|e|t|t|e|r|-|d|o|t|f|i|l|e|s|
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+
+
 # EXECUTION
 if [[ -d "$HOME" ]]; then
   while true; do
     if [[ $# == 0 ]]; then
+      printf $logo
       printf "\n%s\n" "Usage: run OPTION"
       printf "\n%s\n" "Dotfile Options:"
       printf "  %s\n" "s: Show managed dotfiles."

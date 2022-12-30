@@ -1,10 +1,10 @@
 https://newsblocks.io/data-extraction-pipeline/
 Help us build it!
-Do you want to help build this out? If so, send your CV to jobs@newsblocks.io, 
+Do you want to help build this out? If so, send your CV to jobs@newsblocks.io,
 detailing what you are interested in, and the tools and techniques that you would use.
 
 
-Decentralised News Network 
+Decentralised News Network
 @OurDNN
 
 https://civil.co/
@@ -38,30 +38,30 @@ minimizes gaming.
 https://www.nahmii.io/
 
 https://steemit.com/
-Steemit is a blockchain-based social media Dapp (decentralized application) 
-that creates communities where users are rewarded for sharing their voice. 
+Steemit is a blockchain-based social media Dapp (decentralized application)
+that creates communities where users are rewarded for sharing their voice.
 It's a new kind of attention economy.
 
 https://pivx.org
-Experience the freedom of global digital cash with SHIELD User Data Protection. 
+Experience the freedom of global digital cash with SHIELD User Data Protection.
 Be your own bank with full control of your digital assets.
 
 https://navcoin.org/
-We’re in the midst of a paradigm shift with nations relying more 
-and more on cashless options to make payments. 
-Current events have accelerated this paradigm, 
-and concerns surrounding social and financial exclusion, 
-profiling and automated decision making are on the rise. 
-As a response to this, our mission is to provide people with the 
-tools they need to protect their financial privacy, 
+We’re in the midst of a paradigm shift with nations relying more
+and more on cashless options to make payments.
+Current events have accelerated this paradigm,
+and concerns surrounding social and financial exclusion,
+profiling and automated decision making are on the rise.
+As a response to this, our mission is to provide people with the
+tools they need to protect their financial privacy,
 and to do so free of charge.
 
 https://aragon.org/
 Build your Decentralized Autonomous Organization on open-source infrastructure with governance plugins.
 
 https://www.golem.network/
-The Golem Network fosters a global group of creators building ambitious software solutions 
-that will shape the technological landscape of future generations 
+The Golem Network fosters a global group of creators building ambitious software solutions
+that will shape the technological landscape of future generations
 by accessing computing resources across the platform.
 
 https://iex.ec/
@@ -73,9 +73,9 @@ Ideamarket values the world's information,
 creating public narratives without third parties.
 https://docs.ideamarket.io/
 The Blockchain of Opinions (BoO)
-The blockchain of opinions creates decentralized common knowledge by surfacing 
-"the most confident opinions, of the most trusted users." 
-It's an experiment, so its current form is non-marketized — 
+The blockchain of opinions creates decentralized common knowledge by surfacing
+"the most confident opinions, of the most trusted users."
+It's an experiment, so its current form is non-marketized —
 there are no capital gains or losses.
 
 https://hypeclub.xyz/
@@ -148,7 +148,7 @@ source $HOME/dotfiles/zsh/aliases
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
-	
+
 [credential]
 	helper = osxkeychain
 
@@ -160,7 +160,7 @@ brew:
 # Abort on error
 set -e
 
-echo "Checking if Homebrew is already installed..."; 
+echo "Checking if Homebrew is already installed...";
 
 # Checks if Homebrew is installed
 if test ! $(which brew); then
@@ -201,13 +201,15 @@ yes | brew upgrade
 brew cleanup
 
 
+
+
 AppleScripts:
 
 property examplePath1 : "~/Projects/pathto/directory1"
 property examplePath2 : "~/Projects/pathto/directory2"
 property examplePath3 : "~/Projects/pathto/directory3"
 property pathList : {examplePath1, examplePath2, examplePath3}
- 
+
 on run_iterm()
    tell application "iTerm"
        set newWindow to current window
@@ -226,7 +228,7 @@ on run_iterm()
        end tell
    end tell
 end run_iterm
- 
+
 if application "iTerm" is running then
    run_iterm()
 else
@@ -546,6 +548,3 @@ npm update -g
 # Update Ruby & gems
 sudo gem update -system
 sudo gem update
-
-
-

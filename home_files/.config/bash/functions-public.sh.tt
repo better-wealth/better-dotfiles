@@ -288,8 +288,8 @@ eup() {
   softwareupdate --all --install --agree-to-license
   xcode-select --install
   hbsu
-  rustup update
-  tldr --update
+  rustup update # install in better-code via https://rustup.rs/
+  tldr --update # install in better-code with brew
   docker system prune --force
   docker buildx prune --force
 
@@ -1934,9 +1934,9 @@ port() {
   fi
 }
 
-#---------------------------------------------------------#
-# Section: https://johnpatrickroach.github.io/minisign:[Minisign] #
-#---------------------------------------------------------#
+#----------------------------------------------------------#
+# Section: https://jedisct1.github.io/minisign/:[Minisign] #
+#----------------------------------------------------------#
 
 # Label: Minisign Sign File
 # Description: Sign a file.

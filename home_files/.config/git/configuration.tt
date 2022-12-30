@@ -118,7 +118,7 @@
   fsckObjects = true
 [url "https://github.com/"]
   insteadOf = gh:
-[url "https://github.com/bkuhlmann/"]
+[url "https://github.com/johnpatrickroach/"]
   insteadOf = bk:
 [url "https://git.heroku.com"]
   insteadOf = heroku:

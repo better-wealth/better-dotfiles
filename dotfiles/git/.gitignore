@@ -169,6 +169,8 @@ erl_crash.dump
 /config/*.secret.exs
 .elixir_ls/
 
+# Databases
+*.dump
 
 ### https://raw.github.com/github/gitignore/e5323759e387ba347a9d50f8b0ddd16502eb71d4/Go.gitignore
 
@@ -300,7 +302,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
+*.env*
 .env.development.local
 .env.test.local
 .env.production.local
@@ -435,6 +437,9 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+
+# SimpleCov
+coverage
 
 # Unit test / coverage reports
 htmlcov/
@@ -623,6 +628,8 @@ rsconnect/
 /test/tmp/
 /test/version_tmp/
 /tmp/
+tmp
+
 
 # Used by dotenv library to load environment variables.
 # .env
@@ -646,6 +653,18 @@ build-iPhoneSimulator/
 #
 # vendor/Pods/
 
+# Archives
+*.7z
+*.bzip
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.tar.gz
+*.zip
+
 ## Documentation cache and generated files:
 /.yardoc/
 /_yardoc/
@@ -657,9 +676,14 @@ build-iPhoneSimulator/
 /vendor/bundle
 /lib/bundler/man/
 
+# CTags
+.tags
+.tags_sorted_by_file
+/tags
+
 # for a library or gem, you might want to ignore these files since the code is
 # intended to run in multiple environments; otherwise, check them in:
-# Gemfile.lock
+Gemfile.lock
 # .ruby-version
 # .ruby-gemset
 

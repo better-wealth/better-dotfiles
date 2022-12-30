@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: Please use the following metadata when citing this project in your work.
+title: better-dotfiles
+abstract: Better dotfiles.
+version: 0.1.0
+license: MIT
+date-released: 2022-12-20
+authors:
+  - family-names: Roach
+    given-names: John
+    affiliation: better-wealth
+keywords:
+ - bash
+ - shell
+ - scripts
+ - dotfiles
+repository-code: https://github.com/better-wealth/better-dotfiles
+repository-artifact: https://github.com/better-wealth/better-dotfiles
