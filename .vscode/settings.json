@@ -141,8 +141,7 @@
 	"Workspace_Formatter.excludePattern": ["**/build", "**/.*", "**/.vscode"],
 	"svg.preview.autoOpen": true,
 	"errorLens.delay": 1000,
-	"errorLens.enabledDiagnosticLevels": ["error", "warning"],
-	"errorLens.enabled": false,
+	"errorLens.enabled": true,
 	"telemetry.telemetryLevel": "error",
 	"python.linting.banditEnabled": true,
 	"python.linting.prospectorEnabled": true,
@@ -183,5 +182,11 @@
 		"--non-interactive"
 	],
 	"isort.args": ["--float-to-top", "--profile black"],
-	"isort.check": true
+	"isort.check": true,
+	"errorLens.enabledDiagnosticLevels": [
+		"error",
+		"warning",
+		"info",
+		"hint"
+	]
 }
