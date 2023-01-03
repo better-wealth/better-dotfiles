@@ -71,14 +71,16 @@ class Category:
 
     data_day_ranges: list[str] = DATA_DAY_RANGES
 
-    def __init__(self, name: str, category_data_url: str) -> None:
+    def __init__(self, name: str, category_data_url: str, k: int = 10) -> None:
         """Construct the instance."""
         self.name: str = name
-        self.data_coverage = 0
+        self.data_coverage: int = 0
         self.category_data_url: str = category_data_url
         self.data: dict = {}
         self.total_counts: dict = {}
         self.items: dict = {}
+        self.top_k: list = [Item("_", trend=-100) for _ in range(k)]
+        self.bottom_k: list = [Item("_", trend=100) for _ in range(k)]
 
     async def request_category_data(self) -> AsyncGenerator:
         """Request data for a category and date range from Homebrew."""
@@ -105,14 +107,6 @@ class Category:
             self.total_counts[f"{window[0]}_to_{window[1]}"] = (
                 self.total_counts[window[0]] - self.total_counts[window[1]]
             )
-
-    async def get_percents(self) -> AsyncGenerator:
-        """Create an async generator for percents."""
-        for data_day_range, total_count in self.total_counts.items():
-
-    async def set_percents(self) -> None:
-        """Set items percents of total counts."""
-        pass
 
     async def set_category_data(self) -> None:
         """Set the category data."""
@@ -156,7 +150,16 @@ class Category:
             item_instance.data_coverage += 1
             if item_instance.data_coverage == len(self.data_day_ranges):
                 await item_instance.set_windows()
-
+                await item_instance.set_percents(
+                    self.total_counts[data_day_range]
+                )
+                trend: float = await item_instance.set_trend()
+                if trend > self.top_k[0].trend:
+                    self.top_k.insert(0, item_instance)
+                    self.top_k.pop()
+                if trend < self.bottom_k[0].trend:
+                    self.bottom_k.insert(0, item_instance)
+                    self.bottom_k.pop()
 
 
 class Item:
@@ -164,13 +167,13 @@ class Item:
 
     data_day_ranges: list[str] = DATA_DAY_RANGES
 
-    def __init__(self, item_name: str) -> None:
+    def __init__(self, name: str, trend: int = 0) -> None:
         """Construct the Item instance."""
-        self.item_name: str = item_name
+        self.name: str = name
         self.data_coverage: int = 0
         self.counts: dict = {}
         self.percents: dict = {}
-        self.trend: int = 0
+        self.trend: int = trend
 
     async def get_windows(self) -> AsyncGenerator:
         """Create an async generator for windows."""
@@ -187,21 +190,31 @@ class Item:
                 self.counts[window[0]] - self.counts[window[1]]
             )
 
-    async def set_trend(self) -> None:
+    async def get_counts(self) -> AsyncGenerator:
+        """Create an async generator for counts."""
+        for data_day_range in self.data_day_ranges:
+            yield data_day_range, self.counts[data_day_range]
+
+    async def set_percents(self, total_count: int) -> None:
+        """Set items percents of total counts."""
+        async for data_day_range, count in self.get_counts():
+            self.percents[data_day_range] = count / total_count
+
+    async def set_trend(self) -> float:
         """Set item trend value."""
-        percs = [
-            self.percents["365_to_90"],
-            self.percents["90_to_30"],
-            self.percents["30"],
+        percs: list = [
+            self.percents[data_day_range]
+            for data_day_range in self.data_day_ranges
         ]
         if percs[0] == 0:
             percs = percs[1:]
-        windows = range(len(percs))
+        windows: range = range(len(percs))
         self.trend = np.polyfit(windows, percs, 1)[0]
+        return self.trend
 
 
-async def get_category(category: dict) -> Category:
-    """Get category."""
+async def get_trending_homebrew(category: dict) -> Category:
+    """Get Homebrew trends for a Category."""
     category_instance: Category = Category(
         category["name"], category["category_data_url"]
     )
@@ -211,42 +224,16 @@ async def get_category(category: dict) -> Category:
     return category_instance
 
 
-# for formula, values in formulae.items():
-#    formulae[formula]["percent_90_to_365"] = formulae[formula]["count_90_to_365"] / total_90_to_365
-#    formulae[formula]["percent_30_to_90"] = formulae[formula]["count_30_to_90"] / total_30_to_90
-#    formulae[formula]["percent_30"] = values["count_30"] / total_30
-
-
-# formulae = sorted(formulae.items(), key=lambda item: item[1]["trend"], reverse=True)
-
-# top_10 = formulae[0:10]
-# bottom_10 = formulae[-10:]
-
-# print("TOP 10:")
-# for t in top_10:
-#    print("\n")
-#    print(t)
-#    print("\n")
-
-# print("BOTTOM 10:")
-# for b in bottom_10:
-#    print("\n")
-#    print(b)
-#    print("\n")
-
-
 async def main() -> None:
     """Execute the main code."""
     async with Pool() as pool:
-        async for category in pool.map(get_category, CATEGORIES):
+        async for category in pool.map(get_trending_homebrew, CATEGORIES):
+            item: str = "firefox" if category.name == "cask_install" else "xz"
             print("\n")
             print(category.name)
-            print(category.total_counts)
-            print("\n")
-            try:
-                print(category.items.get("xz").counts)
-            except Exception as err:
-                print("Skipping")
+            print(category.data_coverage)
+            print(category.items[item].name)
+            print(category.items[item].counts)
             print("\n")
 
 

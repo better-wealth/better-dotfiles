@@ -342,7 +342,7 @@
         "kind": 6,
         "importPath": "src.better_dotfiles.trending_homebrew",
         "description": "src.better_dotfiles.trending_homebrew",
-        "peekOfCode": "class Category:\n    \"\"\"Category class.\"\"\"\n    data_day_ranges: list[str] = DATA_DAY_RANGES\n    def __init__(self, name: str, category_data_url: str) -> None:\n        \"\"\"Construct the instance.\"\"\"\n        self.name: str = name\n        self.data_coverage = 0\n        self.category_data_url: str = category_data_url\n        self.data: dict = {}\n        self.total_counts: dict = {}",
+        "peekOfCode": "class Category:\n    \"\"\"Category class.\"\"\"\n    data_day_ranges: list[str] = DATA_DAY_RANGES\n    def __init__(self, name: str, category_data_url: str, k: int = 10) -> None:\n        \"\"\"Construct the instance.\"\"\"\n        self.name: str = name\n        self.data_coverage: int = 0\n        self.category_data_url: str = category_data_url\n        self.data: dict = {}\n        self.total_counts: dict = {}",
         "detail": "src.better_dotfiles.trending_homebrew",
         "documentation": {}
     },
@@ -351,7 +351,7 @@
         "kind": 6,
         "importPath": "src.better_dotfiles.trending_homebrew",
         "description": "src.better_dotfiles.trending_homebrew",
-        "peekOfCode": "class Item:\n    \"\"\"Item class.\"\"\"\n    data_day_ranges: list[str] = DATA_DAY_RANGES\n    def __init__(self, item_name: str) -> None:\n        \"\"\"Construct the Item instance.\"\"\"\n        self.item_name: str = item_name\n        self.data_coverage: int = 0\n        self.counts: dict = {}\n        self.percents: dict = {}\n        self.trend: int = 0",
+        "peekOfCode": "class Item:\n    \"\"\"Item class.\"\"\"\n    data_day_ranges: list[str] = DATA_DAY_RANGES\n    def __init__(self, name: str, trend: int = 0) -> None:\n        \"\"\"Construct the Item instance.\"\"\"\n        self.name: str = name\n        self.data_coverage: int = 0\n        self.counts: dict = {}\n        self.percents: dict = {}\n        self.trend: int = trend",
         "detail": "src.better_dotfiles.trending_homebrew",
         "documentation": {}
     },
